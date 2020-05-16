@@ -1,7 +1,19 @@
 (ns mastermind.core
   (:gen-class))
 
-(defn score 
-  [code, guess]
-    [(reduce + (map #(if (= (first %) (second %)) 1 0) (partition 2 (interleave code guess))))]
+(defn count-true [bools]
+  (count (filter identity bools)))
+
+(defn position-matches [code guess]
+  (count-true
+      (map #(= %1 %2) code guess)))
+  
+(defn value-matches [code guess]
+  (count-true
+      (map #(contains? (set code) %1) guess)))
+  
+(defn score [code guess]
+  (let [p (position-matches code guess)
+          v (value-matches code guess)]
+      [p (- v p)])
     )
