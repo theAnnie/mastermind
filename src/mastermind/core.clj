@@ -3,6 +3,5 @@
 
 (defn score 
   [code, guess]
-    (if (= (first code) (first guess))
-      [:pos]
-      []))
+    [(reduce + (map #(if (= (first %) (second %)) 1 0) (partition 2 (interleave code guess))))]
+    )

@@ -8,8 +8,8 @@
 
 (deftest score-test
   (testing "score guess with not matches"
-    (is (= (score [0 0 0 0] [0 1 1 1]) [:pos]))))  
+    (is (= (score [0 0 0 0] [0 1 1 1]) [1]))))  
 
 (deftest score-test
   (testing "score guess with not matches"
-    (is (= (score [0 0 0 0] [0 1 1 0]) [:pos :pos]))))
+    (is (= (score [0 0 0 0] [0 1 1 0]) [2]))))
